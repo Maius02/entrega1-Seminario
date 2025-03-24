@@ -25,18 +25,19 @@ answers = [
 # Índice de la respuesta correcta para cada pregunta, en el mismo orden que las preguntas
 correct_answers_index = [1, 2, 0, 3, 1]
 
-# puntaje del jugadot
+# devuelve una lista con 3 tuplas, que contienen [(question, answers, correct_answers_index)..]
+questions_to_ask = random.choices( list( zip( questions, answers, correct_answers_index)), k=3)
+
+# puntaje del jugador
 score = 0.0
 
 # El usuario deberá contestar 3 preguntas
-for _ in range(3):
-    # Se selecciona una pregunta aleatoria
-    question_index = random.randint(0, len(questions) - 1)
+for question, choices, correct_index in questions_to_ask:
 
-    # Se muestra la pregunta y las respuestas posibles
-    print(questions[question_index])
-    for i, answer in enumerate(answers[question_index]): # respuestas 
-        print(f"{i + 1}. {answer}")
+    # Se muestra en pantalla la pregunta y las respuestas posibles
+    print(question)     #imprime pregunta
+    for i, choice in enumerate(choices): #imprime las respuests posibles
+        print(f'{i+1}- {choice}')
 
     # El usuario tiene 2 intentos para responder correctamente
     for intento in range(2):
@@ -53,18 +54,19 @@ for _ in range(3):
         user_answer = int(user_answer) - 1
 
         # Si es correcta paso a la siguiente
-        if user_answer == correct_answers_index[question_index]:
-            score += 1
+        if user_answer == correct_index:
+            score += 1      #suma puntos
             print("¡Correcto!")
             break
         else:
-            print("Incorrecto. Intenta de nuevo: ")
+            print("Incorrecto.")
             score -= 0.5
     else:
         # el usuario no responde correctamente después de 2 intentos, se muestra la respuesta correcta
-        print("Incorrecto. La respuesta correcta es:")
-        print(answers[question_index][correct_answers_index[question_index]])
+        print(f'La respuesta correcta es: {choices[correct_index]} ')
         
     # Se imprime un blanco al final de la pregunta
     print()
-    print(f'Puntaje:  {score}/3') 
+    
+#muestro puntaje obtenido
+print(f'Puntaje:  {score}/3') 
