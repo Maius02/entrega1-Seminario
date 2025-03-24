@@ -25,6 +25,9 @@ answers = [
 # Índice de la respuesta correcta para cada pregunta, en el mismo orden que las preguntas
 correct_answers_index = [1, 2, 0, 3, 1]
 
+# puntaje del jugadot
+score = 0.0
+
 # El usuario deberá contestar 3 preguntas
 for _ in range(3):
     # Se selecciona una pregunta aleatoria
@@ -51,8 +54,12 @@ for _ in range(3):
 
         # Si es correcta paso a la siguiente
         if user_answer == correct_answers_index[question_index]:
+            score += 1
             print("¡Correcto!")
             break
+        else:
+            print("Incorrecto. Intenta de nuevo: ")
+            score -= 0.5
     else:
         # el usuario no responde correctamente después de 2 intentos, se muestra la respuesta correcta
         print("Incorrecto. La respuesta correcta es:")
@@ -60,3 +67,4 @@ for _ in range(3):
         
     # Se imprime un blanco al final de la pregunta
     print()
+    print(f'Puntaje:  {score}/3') 
