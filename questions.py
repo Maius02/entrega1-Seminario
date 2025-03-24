@@ -26,7 +26,7 @@ answers = [
 correct_answers_index = [1, 2, 0, 3, 1]
 
 # devuelve una lista con 3 tuplas, que contienen [(question, answers, correct_answers_index)..]
-questions_to_ask = random.choices( list( zip( questions, answers, correct_answers_index)), k=3)
+questions_to_ask = random.sample( list( zip( questions, answers, correct_answers_index)), k=3)
 
 # puntaje del jugador
 score = 0.0
@@ -67,6 +67,6 @@ for question, choices, correct_index in questions_to_ask:
         
     # Se imprime un blanco al final de la pregunta
     print()
-    
+
 #muestro puntaje obtenido
 print(f'Puntaje:  {score}/3') 
